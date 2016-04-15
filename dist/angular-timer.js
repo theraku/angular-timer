@@ -110,8 +110,12 @@ var timerModule = angular.module('timer', [])
         }
 
         $scope.$watch('startTimeAttr', function(newValue, oldValue) {
-          if (newValue !== oldValue && $scope.isRunning) {
-            $scope.start();
+          if (newValue !== oldValue) {
+            $scope.$emit('timer-started');
+            
+            if($scope.isRunning) {
+              $scope.start();
+            }
           }
         });
 
